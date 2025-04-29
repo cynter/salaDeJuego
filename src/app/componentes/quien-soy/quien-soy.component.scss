@@ -1,0 +1,36 @@
+.card-animada {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: aparecer 0.8s ease-out both;
+  }
+  
+  .card-animada:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+.btn-dark {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-dark:hover {
+    transform: scale(1.05);
+    background-color: #343a40d9; // un toque más claro
+}
+
+.fade-in-delay-1 {
+    animation: aparecer 0.8s ease-out 0.3s both;
+}
+.fade-in-delay-2 {
+    animation: aparecer 0.8s ease-out 0.6s both;
+}

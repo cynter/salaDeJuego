@@ -1,0 +1,27 @@
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  
+    button {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 25px;
+      background-color: #e0e0e0;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+  
+    button:hover {
+      background-color: #cfcfcf;
+      transform: scale(1.05);
+    }
+  
+    .active-route {
+      background-color: #343a40;
+      color: white;
+    }
+  }
