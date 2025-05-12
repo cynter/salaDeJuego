@@ -1,1 +1,18 @@
-<h1>Bienvenido</h1>
+<div class="container text-center mt-5">
+  <div *ngIf="supabase.user; else notLogged" class="card p-4 shadow-sm">
+    <h2 class="mb-3">Bienvenido</h2>
+    <p class="mb-4">Hola, <strong>{{ supabase.user.email }}</strong></p>
+    <button class="btn btn-danger" (click)="logout()">Cerrar sesión</button>
+  </div>
+
+  <ng-template #notLogged>
+    <div class="card p-4 shadow-sm">
+      <h2 class="mb-3">Bienvenido</h2>
+      <div class="d-flex justify-content-center gap-3">
+        <a routerLink="/login" class="btn btn-primary">Iniciar Sesión</a>
+        <!--<i routerLink="/login" class="bi bi-box-arrow-in-right"></i> Iniciar Sesión -->
+        <a routerLink="/registro" class="btn btn-success">Registrarse</a>
+      </div>
+    </div>
+  </ng-template>
+</div>

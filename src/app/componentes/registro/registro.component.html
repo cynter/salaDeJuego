@@ -1,8 +1,8 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
-      <h2 class="text-center mb-4">Login</h2>
+      <h2 class="text-center mb-4">Registro</h2>
   
-      <form (ngSubmit)="login()">
+      <form (ngSubmit)="register()">
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input
@@ -27,13 +27,8 @@
           />
         </div>
   
-        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+        <button type="submit" class="btn btn-success w-100">Registrarse</button>
       </form>
-  
-      <div class="d-flex justify-content-between mt-3">
-        <button class="btn btn-outline-secondary btn-sm" (click)="fillQuick('usuario1@test.com', 'pass123')">Acceso Rápido 1</button>
-        <button class="btn btn-outline-secondary btn-sm" (click)="fillQuick('usuario2@test.com', 'pass456')">Acceso Rápido 2</button>
-      </div>
       <!--
       <div *ngIf="errorMsg" class="alert alert-danger mt-3 text-center">
         {{ errorMsg }}
@@ -44,3 +39,5 @@
       </div>
     </div>
   </div>
+  
+
