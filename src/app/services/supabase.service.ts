@@ -37,6 +37,10 @@ export class SupabaseService {
     const { data, error } = await this.supabase.auth.signUp({ email, password });
     if (error) throw error;
 
+    if (!data.user || !data.user.identities || data.user.identities.length === 0) {
+      throw new Error('User already registered');
+    }
+    
     return data.user;
   }
 

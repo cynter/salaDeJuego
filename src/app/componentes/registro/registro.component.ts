@@ -15,15 +15,25 @@ export class RegistroComponent {
   email = '';
   password = '';
   errorMsg = '';
+  successMsg = '';
 
   constructor(private supabase: SupabaseService, private router: Router) {}
 
   async register() {
+    this.errorMsg = '';
+    this.successMsg = '';
+
     try {
-      await this.supabase.register(this.email, this.password);
+      const user = await this.supabase.register(this.email, this.password);
+      this.successMsg = 'Registro exitoso. Revisa tu correo.';
+      // Redirigir si lo deseas:
       this.router.navigate(['/home']);
-    } catch (err: any) {
-      this.errorMsg = err.message;
+    } catch (error: any) {
+      if (error.message.includes('User already registered')) {
+        this.errorMsg = 'Este correo ya está registrado.';
+      } else {
+        this.errorMsg = 'Ocurrió un error: ' + error.message;
+      }
     }
   }
 }

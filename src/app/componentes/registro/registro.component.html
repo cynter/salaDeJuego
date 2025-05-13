@@ -33,10 +33,21 @@
       <div *ngIf="errorMsg" class="alert alert-danger mt-3 text-center">
         {{ errorMsg }}
       </div>
-      -->
+      
       <div *ngIf="errorMsg" style="color: red; margin-top: 10px;">
         {{ errorMsg }}
       </div>
+    -->
+      <!-- Alerta de error -->
+      <div *ngIf="errorMsg" class="alert alert-danger mt-3">
+        {{ errorMsg }}
+      </div>
+
+      <!-- Alerta de éxito -->
+      <div *ngIf="successMsg" class="alert alert-success mt-3">
+        {{ successMsg }}
+      </div>
+    
     </div>
   </div>
   

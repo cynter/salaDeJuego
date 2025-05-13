@@ -1,0 +1,22 @@
+<h2>Juego del Ahorcado</h2>
+
+<p>
+  Palabra:
+  <span *ngFor="let letra of palabra.split('')">{{ mostrarLetra(letra) }} </span>
+</p>
+
+<div class="letras" *ngIf="!juegoTerminado">
+  <button *ngFor="let letra of letras" (click)="seleccionarLetra(letra)">
+    {{ letra }}
+  </button>
+</div>
+
+<p>Intentos restantes: {{ intentos }}</p>
+
+<!-- Mensajes de resultado -->
+<div *ngIf="gano" style="color: green; font-weight: bold;">¡GANASTE! 🎉</div>
+<div *ngIf="perdio" style="color: red; font-weight: bold;">PERDISTE 😢</div>
+
+<div *ngIf="juegoTerminado">
+    <button (click)="reiniciarJuego()">Reiniciar juego</button>
+  </div>
