@@ -1,0 +1,36 @@
+<h2>Juego: Mayor o Menor o Igual</h2>
+
+<div *ngIf="!juegoTerminado" style="display: flex; justify-content: center; gap: 2rem;">
+    <div>
+        <p>Carta actual:</p>
+        <img [src]="'assets/cartas/' + cartaActual + '.png'" alt="Carta actual" class="carta" />
+    </div>
+
+    <div>
+        <p>Carta siguiente:</p>
+        <div class="flip-container" [class.flipping]="flipping">
+            <div class="flip-card">
+                <img [src]="'assets/cartas/' + (siguienteCarta || cartaEnAnimacion) + '.png'" alt="Carta siguiente"
+                    class="carta" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!juegoTerminado">
+    <button (click)="jugar('mayor')">Mayor</button>
+    <button (click)="jugar('menor')">Menor</button>
+    <button (click)="jugar('igual')">Igual</button>
+</div>
+
+<p *ngIf="juegoTerminado" class="resultado">
+    ❌ Perdiste. Tu puntaje: <strong>{{ puntaje }}</strong>
+</p>
+
+<p *ngIf="!juegoTerminado" class="puntaje">
+    Puntaje actual: {{ puntaje }}
+</p>
+
+<div *ngIf="juegoTerminado">
+    <button (click)="reiniciarJuego()">🔁 Reiniciar</button>
+</div>

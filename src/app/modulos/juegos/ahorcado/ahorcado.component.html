@@ -1,12 +1,15 @@
 <h2>Juego del Ahorcado</h2>
 
+<img [src]="'assets/ahorcado/' + (6 - intentos) + '.jpeg'" alt="Ahorcado" class="muñeco" />
+
 <p>
   Palabra:
   <span *ngFor="let letra of palabra.split('')">{{ mostrarLetra(letra) }} </span>
 </p>
 
 <div class="letras" *ngIf="!juegoTerminado">
-  <button *ngFor="let letra of letras" (click)="seleccionarLetra(letra)">
+  <button *ngFor="let letra of letras" [disabled]="letrasAdivinadas.includes(letra)"
+    [ngClass]="{ 'usada': letrasAdivinadas.includes(letra) }" (click)="seleccionarLetra(letra)">
     {{ letra }}
   </button>
 </div>
@@ -18,5 +21,14 @@
 <div *ngIf="perdio" style="color: red; font-weight: bold;">PERDISTE 😢</div>
 
 <div *ngIf="juegoTerminado">
-    <button (click)="reiniciarJuego()">Reiniciar juego</button>
-  </div>
+  <button
+    [ngClass]="{
+      'btn-reiniciar': true,
+      'ganaste': gano,
+      'perdiste': perdio
+    }"
+    (click)="reiniciarJuego()"
+  >
+    🔄 Reiniciar juego
+  </button>
+</div>

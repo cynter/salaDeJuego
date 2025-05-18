@@ -1,0 +1,79 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.carta {
+  width: 120px;
+  height: auto;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.carta:hover {
+  transform: scale(1.05);
+}
+
+button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin: 0.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #357ab8;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.resultado, .puntaje {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #444;
+}
+
+.resultado strong {
+  color: #c0392b;
+}
+
+.puntaje {
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.flip-container {
+  perspective: 1000px;
+}
+
+.flip-card {
+  transition: transform 0.5s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.flipping .flip-card {
+  transform: rotateY(180deg);
+}

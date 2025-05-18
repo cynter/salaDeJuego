@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ahorcado',
-  imports: [CommonModule],
+  standalone: false,
   templateUrl: './ahorcado.component.html',
   styleUrl: './ahorcado.component.scss'
 })
 export class AhorcadoComponent {
-  
+
   palabras: string[] = ['ANGULAR', 'TYPESCRIPT', 'COMPONENTE', 'SERVICIO', 'RUTA'];
   palabra: string = this.elegirPalabra();
   letrasAdivinadas: string[] = [];
@@ -48,5 +47,4 @@ export class AhorcadoComponent {
     const index = Math.floor(Math.random() * this.palabras.length);
     return this.palabras[index];
   }
-
 }

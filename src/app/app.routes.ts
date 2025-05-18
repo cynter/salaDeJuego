@@ -15,8 +15,16 @@ export const routes: Routes = [
     { path: 'registro', component: RegistroComponent },
     { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
     {
+      path: 'juegos',
+      loadChildren: () =>
+        import('./modulos/juegos/juegos.module').then(m => m.JuegosModule)
+    }
+    /*
+    {
+      //aca que use loadComponent y modulos
         path: 'ahorcado',
-        loadChildren: () => import('./componentes/juegos/ahorcado/ahorcado.routes').then(m => m.AHORCADO_ROUTES)
+        loadChildren: () => import('./componentes/juegos/ahorcado/ahorcado.routes').then(
+          m => m.AHORCADO_ROUTES)
     },
     {
       path: 'mayor-menor',
@@ -25,4 +33,5 @@ export const routes: Routes = [
           (m) => m.MAYOR_MENOR_ROUTES
         )
     }
+    */
 ];

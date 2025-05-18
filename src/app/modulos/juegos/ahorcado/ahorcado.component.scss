@@ -1,0 +1,111 @@
+.letras {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.letras button {
+  margin: 4px;
+  padding: 8px 14px;
+  font-weight: bold;
+  border: none;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.letras button:hover:not(.usada) {
+  background-color: #1976d2;
+}
+
+.letras button.usada {
+  background-color: #e53935 !important;
+  cursor: not-allowed;
+}
+
+.imagen-ahorcado {
+  width: 150px;
+  height: auto;
+  margin-bottom: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.svg-ahorcado {
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.muñeco {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.btn-reiniciar {
+  background-color: #4CAF50; /* Verde */
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-reiniciar:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.btn-reiniciar {
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  animation: fadeInUp 0.5s ease;
+}
+
+.btn-reiniciar:hover {
+  transform: scale(1.05);
+}
+
+/* Colores dinámicos */
+.btn-reiniciar.ganaste {
+  background-color: #4CAF50;
+}
+
+.btn-reiniciar.perdiste {
+  background-color: #f44336;
+}
+
+/* Animación de aparición */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
