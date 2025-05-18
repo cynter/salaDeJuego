@@ -2,7 +2,20 @@
   <div *ngIf="supabase.user; else notLogged" class="card p-4 shadow-sm">
     <h2 class="mb-3">Bienvenido</h2>
     <p class="mb-4">Hola, <strong>{{ supabase.user.email }}</strong></p>
-    <button class="btn btn-danger" (click)="logout()">Cerrar sesión</button>
+    <button class="btn btn-danger mb-4" (click)="logout()">Cerrar sesión</button>
+
+    <!-- Tarjetas de juegos -->
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-2">
+      <div class="col" *ngFor="let juego of juegos">
+        <div class="card h-100 shadow-sm">
+          <img [src]="juego.imagen" class="card-img-top" alt="{{ juego.nombre }}" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">{{ juego.nombre }}</h5>
+            <button class="btn btn-primary" (click)="irAJuego(juego.ruta)">Jugar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <ng-template #notLogged>
@@ -10,7 +23,6 @@
       <h2 class="mb-3">Bienvenido</h2>
       <div class="d-flex justify-content-center gap-3">
         <a routerLink="/login" class="btn btn-primary">Iniciar Sesión</a>
-        <!--<i routerLink="/login" class="bi bi-box-arrow-in-right"></i> Iniciar Sesión -->
         <a routerLink="/registro" class="btn btn-success">Registrarse</a>
       </div>
     </div>

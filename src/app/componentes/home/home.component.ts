@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
@@ -12,9 +12,36 @@ import { SupabaseService } from '../../services/supabase.service';
 
 export class HomeComponent {
 
-  constructor(public supabase: SupabaseService) {}
+  juegos = [
+    {
+      nombre: 'Ahorcado',
+      ruta: 'juegos/ahorcado',
+      imagen: 'assets/ahorcado.png'
+    },
+    {
+      nombre: 'Mayor o Menor',
+      ruta: 'juegos/mayor-menor',
+      imagen: 'assets/mayor-menor.png'
+    },
+    {
+      nombre: 'Preguntados',
+      ruta: 'juegos/preguntados',
+      imagen: 'assets/preguntados.png'
+    },
+    {
+      nombre: 'Adivina la casa',
+      ruta: 'juegos/mi-juego',
+      imagen: 'assets/mi-juego.png'
+    }
+  ];
+
+  constructor(public supabase: SupabaseService, private router: Router) {}
 
   logout() {
     this.supabase.logout();
+  }
+
+  irAJuego(ruta: string) {
+    this.router.navigate([ruta]);
   }
 }
