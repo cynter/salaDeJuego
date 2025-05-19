@@ -1,0 +1,29 @@
+<div *ngIf="personajeActual">
+  <h2>¿A qué casa pertenece este personaje?</h2>
+  <!--<img [src]="personajeActual.imageUrl" alt="Personaje" width="200" />-->
+  <div class="imagen-container">
+    <img [src]="personajeActual.imageUrl" alt="Personaje" />
+  </div>
+
+  <div class="opciones">
+    <button *ngFor="let opcion of opciones" (click)="verificarRespuesta(opcion)">
+      {{ opcion }}
+    </button>
+  </div>
+
+  <div *ngIf="respuestaMostrada">
+    <p [ngClass]="{ 'correcta': esCorrecta, 'incorrecta': !esCorrecta }">
+      {{ esCorrecta ? '¡Correcto!' : 'Incorrecto. La casa correcta era: ' + personajeActual.family }}
+    </p>
+    <button class="siguiente" (click)="siguiente()">Siguiente</button>
+  </div>
+</div>
+
+<div *ngIf="!personajeActual">
+  <p>Cargando personaje...</p>
+</div>
+
+<div class="marcador">
+  <p>Puntaje: {{ puntaje }}</p>
+  <p>Preguntas respondidas: {{ totalPreguntas }}</p>
+</div>

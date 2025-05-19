@@ -9,17 +9,18 @@ const routes: Routes = [
     path: 'ahorcado',
     component: AhorcadoComponent,
   },
-  /* este seria si el componente es standalone
-  // este es el que se usa para lazy loading
-  {
-  path: 'ahorcado',
-  loadComponent: () =>
-    import('./ahorcado/ahorcado.component').then((m) => m.AhorcadoComponent),
-  }
-  */
   {
     path: 'mayor-menor',
     component: MayorMenorComponent,
+  },
+  // este es el que se usa para lazy loading con el modulo y el componente standalone true
+  {
+    path:'preguntados',
+    loadComponent: () => import('./preguntados/preguntados.component').then(m => m.PreguntadosComponent),
+  },
+  {
+    path: 'mi-juego',
+    loadComponent: () => import('./mi-juego/mi-juego.component').then(m => m.MiJuegoComponent),
   }
 ];
 

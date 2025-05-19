@@ -1,0 +1,71 @@
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.bandera-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.bandera-container img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px 0;
+}
+
+button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+.puntuacion {
+  font-size: 16px;
+  color: #374151;
+  margin-top: 5px;
+}
+
+.mensaje {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.correcto {
+  color: #16a34a; // verde
+}
+
+.incorrecto {
+  color: #dc2626; // rojo
+}

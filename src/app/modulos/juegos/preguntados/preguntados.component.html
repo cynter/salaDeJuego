@@ -1,0 +1,20 @@
+<div class="contenedor">
+    <h2>¿A qué país pertenece esta bandera?</h2>
+
+    <div class="bandera-container">
+        <img [src]="banderaActual?.flag" alt="Bandera" />
+    </div>
+
+    <div class="opciones">
+        <button *ngFor="let opcion of opciones" (click)="seleccionarOpcion(opcion)">
+            {{ opcion }}
+        </button>
+    </div>
+
+    <p class="mensaje" [ngClass]="{ 'correcto': esCorrecta, 'incorrecto': !esCorrecta && mensaje }">
+        <span *ngIf="mensaje">
+            {{ esCorrecta ? '✅' : '❌' }} {{ mensaje }}
+        </span>
+    </p>
+    <p class="puntuacion">Puntuación: {{ puntuacion }}</p>
+</div>
