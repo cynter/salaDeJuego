@@ -18,16 +18,16 @@ export class AuthService {
 
   // Método llamado al inicio para cargar el usuario actual
   private async loadUser() {
+    // Escuchar cambios en la sesión
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      this._user.next(session?.user || null);
+    });
+
     const {
       data: { session }
     } = await this.supabase.auth.getSession();
 
     this._user.next(session?.user || null);
-
-    // Escuchar cambios en la sesión
-    this.supabase.auth.onAuthStateChange((event, session) => {
-      this._user.next(session?.user || null);
-    });
   }
 
   get currentUser(): User | null {

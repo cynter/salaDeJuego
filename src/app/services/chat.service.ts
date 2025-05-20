@@ -4,8 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export interface ChatMessage {
-  id: number;
+  id: string;
   user_id: string;
+  email: string;
   content: string;
   created_at: string;
 }
@@ -51,9 +52,12 @@ export class ChatService {
           const newMessage = payload.new as ChatMessage;
           const current = this._messages.value;
           this._messages.next([...current, newMessage]);
+          console.log('New message received via Realtime:', newMessage);
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        console.log('Subscription status:', status);
+      });
   }
 
   async sendMessage(content: string, userId: string) {

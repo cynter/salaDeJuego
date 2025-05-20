@@ -14,26 +14,11 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'quien-soy', component: QuienSoyComponent },
     { path: 'registro', component: RegistroComponent },
-    { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+    { path: 'chat', loadComponent: () => import('./componentes/chat/chat.component').then(m => m.ChatComponent), canActivate: [AuthGuard] },
     {
       path: 'juegos',
       loadChildren: () =>
         import('./modulos/juegos/juegos.module').then(m => m.JuegosModule)
     },
-    { path: 'encuesta', component: EncuestaComponent },
-    /*
-    {
-      //aca que use loadComponent y modulos
-        path: 'ahorcado',
-        loadChildren: () => import('./componentes/juegos/ahorcado/ahorcado.routes').then(
-          m => m.AHORCADO_ROUTES)
-    },
-    {
-      path: 'mayor-menor',
-      loadChildren: () =>
-        import('./componentes/juegos/mayor-menor/mayor-menor.routes').then(
-          (m) => m.MAYOR_MENOR_ROUTES
-        )
-    }
-    */
+    { path: 'encuesta', component: EncuestaComponent }
 ];
