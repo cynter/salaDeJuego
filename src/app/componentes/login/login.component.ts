@@ -16,7 +16,7 @@ export class LoginComponent {
   password = '';
   errorMsg = '';
 
-  constructor(private supabase: SupabaseService, private router: Router) {}
+  constructor(private supabase: SupabaseService, private router: Router) { }
 
   async login() {
     try {
@@ -24,6 +24,11 @@ export class LoginComponent {
       this.router.navigate(['/home']);
     } catch (err: any) {
       this.errorMsg = err.message;
+      if (err.message.includes('Invalid login credentials')) {
+        this.errorMsg = 'Credenciales invalidas.';
+      } else {
+        this.errorMsg = 'Ocurrió un error: ' + err.message;
+      }
     }
   }
 

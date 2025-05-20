@@ -17,7 +17,7 @@ export class RegistroComponent {
   errorMsg = '';
   successMsg = '';
 
-  constructor(private supabase: SupabaseService, private router: Router) {}
+  constructor(private supabase: SupabaseService, private router: Router) { }
 
   async register() {
     this.errorMsg = '';
@@ -26,11 +26,14 @@ export class RegistroComponent {
     try {
       const user = await this.supabase.register(this.email, this.password);
       this.successMsg = 'Registro exitoso. Revisa tu correo.';
-      // Redirigir si lo deseas:
       this.router.navigate(['/home']);
     } catch (error: any) {
       if (error.message.includes('User already registered')) {
         this.errorMsg = 'Este correo ya está registrado.';
+      } else if (error.message.includes('Unable to validate email address: invalid format')) {
+        this.errorMsg = 'Formato invalido de mail.';
+      } else if (error.message.includes('Password should be at least 6 characters')) {
+        this.errorMsg = 'La contraseña tiene que tener minimo 6 caracteres.';
       } else {
         this.errorMsg = 'Ocurrió un error: ' + error.message;
       }

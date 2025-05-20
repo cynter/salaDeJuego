@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { ChatService, ChatMessage } from '../../services/chat.service';
-import { AuthService } from '../../services/auth.service'; // Asegúrate que tienes esto
+import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -31,7 +31,7 @@ export class ChatComponent implements AfterViewInit {
   }
 
   async sendMessage() {
-    const user = this.auth.currentUser; // Asegúrate de que este getter esté disponible
+    const user = this.auth.currentUser;
 
     if (!user || !user.id) {
       console.warn('No estás autenticado');

@@ -1,46 +1,29 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
-      <h2 class="text-center mb-4">Login</h2>
-  
-      <form (ngSubmit)="login()">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            [(ngModel)]="email"
-            required
-          />
-        </div>
-  
-        <div class="mb-3">
-          <label for="password" class="form-label">Contraseña</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            name="password"
-            [(ngModel)]="password"
-            required
-          />
-        </div>
-  
-        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-      </form>
-  
-      <div class="d-flex justify-content-between mt-3">
-        <button class="btn btn-outline-secondary btn-sm" (click)="fillQuick('cynteran27@gmail.com', '123456')">Acceso Rápido 1</button>
-        <button class="btn btn-outline-secondary btn-sm" (click)="fillQuick('cynthia.teran.ravelo@gmail.com', '123456')">Acceso Rápido 2</button>
+  <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form (ngSubmit)="login()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required />
       </div>
-      <!--
-      <div *ngIf="errorMsg" class="alert alert-danger mt-3 text-center">
-        {{ errorMsg }}
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required />
       </div>
-      -->
-      <div *ngIf="errorMsg" style="color: red; margin-top: 10px;">
-        {{ errorMsg }}
-      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+    </form>
+
+    <div class="d-flex justify-content-between mt-3">
+      <button class="btn btn-outline-secondary btn-sm" (click)="fillQuick('cynteran27@gmail.com', '123456')">Acceso
+        Rápido 1</button>
+      <button class="btn btn-outline-secondary btn-sm"
+        (click)="fillQuick('cynthia.teran.ravelo@gmail.com', '123456')">Acceso Rápido 2</button>
+    </div>
+    <div *ngIf="errorMsg" style="color: red; margin-top: 10px;">
+      {{ errorMsg }}
     </div>
   </div>
+</div>
