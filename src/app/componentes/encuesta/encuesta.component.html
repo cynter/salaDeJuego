@@ -1,0 +1,80 @@
+<form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()" class="encuesta-form">
+  <h2>Encuesta</h2>
+
+  <!-- Nombre -->
+  <div class="form-group">
+    <label>Nombre</label>
+    <input type="text" formControlName="nombre" />
+    <div class="error" *ngIf="encuestaForm.get('nombre')?.touched && encuestaForm.get('nombre')?.invalid">
+      Nombre requerido
+    </div>
+  </div>
+
+  <!-- Apellido -->
+  <div class="form-group">
+    <label>Apellido</label>
+    <input type="text" formControlName="apellido" />
+    <div class="error" *ngIf="encuestaForm.get('apellido')?.touched && encuestaForm.get('apellido')?.invalid">
+      Apellido requerido
+    </div>
+  </div>
+
+  <!-- Edad -->
+  <div class="form-group">
+    <label>Edad</label>
+    <input type="number" formControlName="edad" />
+    <div class="error" *ngIf="encuestaForm.get('edad')?.touched && encuestaForm.get('edad')?.invalid">
+      Edad válida requerida (18-98)
+    </div>
+  </div>
+
+  <!-- Teléfono -->
+  <div class="form-group">
+    <label>Teléfono</label>
+    <input type="text" formControlName="telefono" maxlength="10" />
+    <div class="error" *ngIf="encuestaForm.get('telefono')?.touched && encuestaForm.get('telefono')?.invalid">
+      Solo números, máximo 10 dígitos
+    </div>
+  </div>
+
+  <!-- Pregunta 1 -->
+  <div class="form-group">
+    <label>¿Recomendarias la Sala de Juegos?</label>
+    <div class="radio-group">
+      <label><input type="radio" formControlName="pregunta1" value="Si" /> Si </label>
+      <label><input type="radio" formControlName="pregunta1" value="No" /> No </label>
+      <label><input type="radio" formControlName="pregunta1" value="Posiblemente" /> Posiblemente </label>
+    </div>
+    <div class="error" *ngIf="encuestaForm.get('pregunta1')?.touched && encuestaForm.get('pregunta1')?.invalid">
+      Selección requerida
+    </div>
+  </div>
+
+  <!-- Pregunta 2 -->
+  <div class="form-group" formGroupName="pregunta2">
+    <label>¿Cual fue tu juego preferido?</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" formControlName="opcion1" /> Ahorcado </label>
+      <label><input type="checkbox" formControlName="opcion2" /> Mayor-Menor-Igual</label>
+      <label><input type="checkbox" formControlName="opcion3" /> Preguntados</label>
+      <label><input type="checkbox" formControlName="opcion4" /> Adivina la casa</label>
+    </div>
+    <div class="error" *ngIf="encuestaForm.get('pregunta2')?.touched && encuestaForm.get('pregunta2')?.invalid">
+      Selecciona al menos uno
+    </div>
+  </div>
+
+  <!-- Pregunta 3 -->
+  <div class="form-group">
+    <label>¿Qué opinas sobre la sala de juegos?</label>
+    <textarea formControlName="pregunta3" rows="3"></textarea>
+    <div class="error" *ngIf="encuestaForm.get('pregunta3')?.touched && encuestaForm.get('pregunta3')?.invalid">
+      Esta respuesta es requerida
+    </div>
+  </div>
+
+  <!-- Botón -->
+  <div class="form-group text-center">
+    <button type="submit">Enviar encuesta</button>
+  </div>
+</form>

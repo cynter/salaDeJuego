@@ -6,7 +6,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class SupabaseService {
-  private supabase: SupabaseClient;
+  //private supabase: SupabaseClient;
+  public supabase: SupabaseClient;
   private currentUser: User | null = null;
 
   constructor() {
@@ -53,5 +54,10 @@ export class SupabaseService {
 
   async logout() {
     await this.supabase.auth.signOut();
+  }
+
+  //Guardar encuesta
+  insertarEncuesta(data: any) {
+    return this.supabase.from('encuestas').insert(data);
   }
 }

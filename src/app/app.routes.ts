@@ -5,6 +5,7 @@ import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { ChatComponent } from './componentes/chat/chat.component';
 import { AuthGuard } from './auth/auth.guard';
+import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 
 export const routes: Routes = [
 
@@ -18,7 +19,8 @@ export const routes: Routes = [
       path: 'juegos',
       loadChildren: () =>
         import('./modulos/juegos/juegos.module').then(m => m.JuegosModule)
-    }
+    },
+    { path: 'encuesta', component: EncuestaComponent },
     /*
     {
       //aca que use loadComponent y modulos
