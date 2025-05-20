@@ -1,12 +1,28 @@
-<div *ngIf="(messages$ | async) as messages">
-  <div *ngFor="let msg of messages" style="margin-bottom: 1em; border-bottom: 1px solid #ccc;">
-    <strong>{{ msg.email }}</strong>
-    <span style="font-size: 0.8em; color: gray;">{{ msg.created_at | date:'short' }}</span>
-    <div>{{ msg.content }}</div>
-  </div>
-</div>
+<div class="chat-container">
+  <div class="message-list" #messageList *ngIf="(messages$ | async) as messages">
+    <div *ngFor="let msg of messages; let i = index" class="message-container" [ngClass]="{
+        'my-message': msg.user_id === auth.currentUser?.id,
+        'other-message': msg.user_id !== auth.currentUser?.id,
+        'new-user-message': i === 0 || messages[i - 1].user_id !== msg.user_id
+      }">
+      <!-- Mostrar email + fecha si es un nuevo usuario -->
+      <div *ngIf="i === 0 || messages[i - 1].user_id !== msg.user_id" class="message-header"
+        [style.color]="getUserColor(msg.user_id)">
+        <span class="email">{{ msg.email }}</span>
+        <span class="timestamp">{{ msg.created_at | date: 'short' }}</span>
+      </div>
 
-<div style="margin-top: 1em;">
-  <input type="text" [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." style="width: 80%; padding: 0.5em;" />
-  <button (click)="sendMessage()">Enviar</button>
+      <!-- Si es el mismo usuario que el anterior, solo mostrar la fecha -->
+      <div *ngIf="i > 0 && messages[i - 1].user_id === msg.user_id" class="timestamp-only">
+        {{ msg.created_at | date: 'short' }}
+      </div>
+      <div class="message-content">{{ msg.content }}</div>
+    </div>
+  </div>
+
+  <div class="message-input-wrapper">
+    <input type="text" [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." class="message-input"
+      (keydown)="onKeyDown($event)" />
+    <button (click)="sendMessage()" class="send-button">Enviar</button>
+  </div>
 </div>

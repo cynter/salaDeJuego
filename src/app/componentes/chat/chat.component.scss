@@ -1,0 +1,133 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 88vh; // Altura completa de la ventana
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+.message-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fondo-chat {
+    background-color: #f5f5f5;
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.message-container {
+    background-color: #3d1279; // fondo común
+    border-radius: 10px;
+    padding: 0.8em 1em;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil para darle profundidad */
+}
+
+/* Margen entre mensajes en general */
+.message-container+.message-container {
+    margin-top: 1px;
+}
+
+/* Margen extra si el mensaje es de un usuario diferente al anterior */
+.message-container.new-user-message {
+    margin-top: 5px !important;
+}
+
+.my-message {
+    text-align: right;
+    align-self: flex-end;
+    margin-left: auto;
+    color: #ffffff;
+}
+
+.other-message {
+    text-align: left;
+    align-self: flex-start;
+    margin-right: auto;
+    color: #ffffff;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85em;
+    margin-bottom: 0.2em;
+}
+
+.email {
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 0.2em;
+}
+
+.timestamp {
+    font-size: 0.75em;
+    color: gray;
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.timestamp-only {
+    align-self: flex-end;
+    font-size: 0.75em;
+    color: gray;
+    margin-bottom: 0.2em;
+    margin-top: -0.2em;
+}
+
+.message-content {
+    white-space: pre-line;
+}
+
+.message-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 1em;
+    padding: 0.5em;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-input {
+    flex: 1;
+    padding: 0.7em 1em;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: #ffffff;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s;
+}
+
+.message-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #1976d2;
+}
+
+.send-button {
+    background-color: #1976d2;
+    color: white;
+    padding: 0.7em 1.2em;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.send-button:hover {
+    background-color: #125ca1;
+}
