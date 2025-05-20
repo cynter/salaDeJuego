@@ -35,6 +35,6 @@ export class LoginComponent {
   fillQuick(email: string, password: string) {
     this.email = email;
     this.password = password;
-    this.login();
+    //this.login(); //para que inicie sesion automaticamente
   }
 }

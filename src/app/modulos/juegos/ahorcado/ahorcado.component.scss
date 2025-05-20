@@ -109,3 +109,27 @@
   }
 }
 
+.ahorcado-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fdfdfd;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeInUp 0.5s ease;
+}
+
+.resultado {
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.resultado.ganado {
+  color: green;
+}
+
+.resultado.perdido {
+  color: red;
+}

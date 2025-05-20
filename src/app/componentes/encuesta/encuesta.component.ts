@@ -25,6 +25,7 @@ export class EncuestaComponent {
         opcion1: [false],
         opcion2: [false],
         opcion3: [false],
+        opcion4: [false],
       }, { validators: this.alMenosUnaSeleccionada }),
       pregunta3: ['', Validators.required] // textbox
     });

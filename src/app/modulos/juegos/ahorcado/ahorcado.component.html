@@ -1,34 +1,36 @@
-<h2>Juego del Ahorcado</h2>
+<div class="ahorcado-container">
+  <h2>Juego del Ahorcado</h2>
 
-<img [src]="'assets/ahorcado/' + (6 - intentos) + '.jpeg'" alt="Ahorcado" class="muñeco" />
+  <img [src]="'assets/ahorcado/' + (6 - intentos) + '.jpeg'" alt="Ahorcado" class="muñeco" />
 
-<p>
-  Palabra:
-  <span *ngFor="let letra of palabra.split('')">{{ mostrarLetra(letra) }} </span>
-</p>
+  <p>
+    Palabra:
+    <span *ngFor="let letra of palabra.split('')">{{ mostrarLetra(letra) }} </span>
+  </p>
 
-<div class="letras" *ngIf="!juegoTerminado">
-  <button *ngFor="let letra of letras" [disabled]="letrasAdivinadas.includes(letra)"
-    [ngClass]="{ 'usada': letrasAdivinadas.includes(letra) }" (click)="seleccionarLetra(letra)">
-    {{ letra }}
-  </button>
-</div>
+  <div class="letras" *ngIf="!juegoTerminado">
+    <button *ngFor="let letra of letras" [disabled]="letrasAdivinadas.includes(letra)"
+      [ngClass]="{ 'usada': letrasAdivinadas.includes(letra) }" (click)="seleccionarLetra(letra)">
+      {{ letra }}
+    </button>
+  </div>
 
-<p>Intentos restantes: {{ intentos }}</p>
+  <p>Intentos restantes: {{ intentos }}</p>
 
-<!-- Mensajes de resultado -->
-<div *ngIf="gano" style="color: green; font-weight: bold;">¡GANASTE! 🎉</div>
-<div *ngIf="perdio" style="color: red; font-weight: bold;">PERDISTE 😢</div>
+  <!-- Mensajes de resultado -->
+  <div *ngIf="gano" class="resultado ganado">¡GANASTE! 🎉</div>
+  <div *ngIf="perdio" class="resultado perdido">PERDISTE 😢</div>
 
-<div *ngIf="juegoTerminado">
-  <button
-    [ngClass]="{
-      'btn-reiniciar': true,
-      'ganaste': gano,
-      'perdiste': perdio
-    }"
-    (click)="reiniciarJuego()"
-  >
-    🔄 Reiniciar juego
-  </button>
+  <div *ngIf="juegoTerminado">
+    <button
+      [ngClass]="{
+        'btn-reiniciar': true,
+        'ganaste': gano,
+        'perdiste': perdio
+      }"
+      (click)="reiniciarJuego()"
+    >
+      🔄 Reiniciar juego
+    </button>
+  </div>
 </div>

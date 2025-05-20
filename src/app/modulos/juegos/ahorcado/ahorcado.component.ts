@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AhorcadoComponent {
 
-  palabras: string[] = ['ANGULAR', 'TYPESCRIPT', 'COMPONENTE', 'SERVICIO', 'RUTA'];
+  palabras: string[] = ['ANGULAR', 'COMPUTADORA', 'MONITOR' , 'TECLADO' , 'PROGRAMACION' , 'COMPONENTE', 'SERVICIO', 'RUTA'];
   palabra: string = this.elegirPalabra();
   letrasAdivinadas: string[] = [];
   intentos = 6;
