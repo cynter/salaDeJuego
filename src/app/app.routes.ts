@@ -9,16 +9,20 @@ import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 
 export const routes: Routes = [
 
-    { path: '', redirectTo: '/home', pathMatch: "full" },
-    { path: 'home', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'quien-soy', component: QuienSoyComponent },
-    { path: 'registro', component: RegistroComponent },
-    { path: 'chat', loadComponent: () => import('./componentes/chat/chat.component').then(m => m.ChatComponent), canActivate: [AuthGuard] },
-    {
-      path: 'juegos',
-      loadChildren: () =>
-        import('./modulos/juegos/juegos.module').then(m => m.JuegosModule)
-    },
-    { path: 'encuesta', component: EncuestaComponent }
+  { path: '', redirectTo: '/home', pathMatch: "full" },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'quien-soy', component: QuienSoyComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'chat', loadComponent: () => import('./componentes/chat/chat.component').then(m => m.ChatComponent), canActivate: [AuthGuard] },
+  {
+    path: 'juegos',
+    loadChildren: () =>
+      import('./modulos/juegos/juegos.module').then(m => m.JuegosModule)
+  },
+  { path: 'encuesta', component: EncuestaComponent },
+  {
+    path: 'resultados',
+    loadComponent: () => import('./componentes/resultados/resultados.component').then(m => m.ResultadosComponent)
+  }
 ];

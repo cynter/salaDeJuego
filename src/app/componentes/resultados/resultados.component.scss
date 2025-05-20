@@ -1,0 +1,35 @@
+.resultados-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fdfdfd;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tabla th, .tabla td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+.tabla th {
+  background-color: #f0f0f0;
+}
+
+.ganado {
+  color: green;
+  font-weight: bold;
+}
+
+.perdido {
+  color: red;
+  font-weight: bold;
+}

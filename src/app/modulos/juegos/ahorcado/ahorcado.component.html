@@ -19,17 +19,17 @@
 
   <!-- Mensajes de resultado -->
   <div *ngIf="gano" class="resultado ganado">¡GANASTE! 🎉</div>
-  <div *ngIf="perdio" class="resultado perdido">PERDISTE 😢</div>
+  <div *ngIf="perdio" class="resultado perdido">
+    PERDISTE 😢<br />
+    La palabra era: <strong>{{ palabra }}</strong>
+  </div>
 
   <div *ngIf="juegoTerminado">
-    <button
-      [ngClass]="{
+    <button [ngClass]="{
         'btn-reiniciar': true,
         'ganaste': gano,
         'perdiste': perdio
-      }"
-      (click)="reiniciarJuego()"
-    >
+      }" (click)="reiniciarJuego()">
       🔄 Reiniciar juego
     </button>
   </div>

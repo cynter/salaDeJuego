@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { ResultadoService } from '../../../services/resultado.service';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -6,7 +7,9 @@ import { Component, OnDestroy } from '@angular/core';
   templateUrl: './mayor-menor.component.html',
   styleUrl: './mayor-menor.component.scss'
 })
-export class MayorMenorComponent implements OnDestroy{
+export class MayorMenorComponent implements OnDestroy {
+
+  constructor(private resultadoService: ResultadoService) { }
 
   cartaActual: number = this.obtenerCarta();
   siguienteCarta: number = 0;
@@ -34,30 +37,36 @@ export class MayorMenorComponent implements OnDestroy{
   }
 
   jugar(eleccion: 'mayor' | 'menor' | 'igual') {
-  this.detenerAnimacion();
-  this.flipping = true; // activa animación
+    this.detenerAnimacion();
+    this.flipping = true; // activa animación
 
-  // Esperamos la duración de la animación antes de mostrar el resultado
-  setTimeout(() => {
-    this.siguienteCarta = this.cartaEnAnimacion;
+    // Esperamos la duración de la animación antes de mostrar el resultado
+    setTimeout(() => {
+      this.siguienteCarta = this.cartaEnAnimacion;
 
-    const gano =
-      (eleccion === 'mayor' && this.siguienteCarta > this.cartaActual) ||
-      (eleccion === 'menor' && this.siguienteCarta < this.cartaActual) ||
-      (eleccion === 'igual' && this.siguienteCarta == this.cartaActual);
+      const gano =
+        (eleccion === 'mayor' && this.siguienteCarta > this.cartaActual) ||
+        (eleccion === 'menor' && this.siguienteCarta < this.cartaActual) ||
+        (eleccion === 'igual' && this.siguienteCarta == this.cartaActual);
 
-    this.flipping = false; // termina animación
+      this.flipping = false; // termina animación
 
-    if (gano) {
-      this.puntaje++;
-      this.cartaActual = this.siguienteCarta;
-      this.siguienteCarta = 0;
-      this.iniciarAnimacion(); // continuar
-    } else {
-      this.juegoTerminado = true;
-    }
-  }, 500); // duración del giro (debe coincidir con el CSS)
-}
+      if (gano) {
+        this.puntaje++;
+
+        // Si llegó a 5 puntos, ganó
+        if (this.puntaje >= 5) {
+          this.finalizarJuego(true); // Ganó
+        } else {
+          this.cartaActual = this.siguienteCarta;
+          this.siguienteCarta = 0;
+          this.iniciarAnimacion(); // continuar
+        }
+      } else {
+        this.finalizarJuego(false); // Perdió
+      }
+    }, 500); // duración del giro (debe coincidir con el CSS)
+  }
 
   reiniciarJuego() {
     this.puntaje = 0;
@@ -74,4 +83,16 @@ export class MayorMenorComponent implements OnDestroy{
   ngOnInit(): void {
     this.iniciarAnimacion();
   }
+
+  finalizarJuego(gano: boolean) {
+    this.juegoTerminado = true;
+
+    this.resultadoService.guardarResultado(
+      'Mayor o Menor',
+      this.puntaje,
+      '',       // no hay palabra en este juego
+      gano
+    );
+  }
+
 }

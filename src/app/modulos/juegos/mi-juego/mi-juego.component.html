@@ -1,16 +1,30 @@
-<div *ngIf="personajeActual">
+<div *ngIf="personajeActual && !juegoTerminado">
   <h2>¿A qué casa pertenece este personaje?</h2>
-  <!--<img [src]="personajeActual.imageUrl" alt="Personaje" width="200" />-->
+  <!-- Barra de progreso -->
+  <!-- 
+  <div class="barra-contenedor">
+    <div class="barra" [style.width.%]="(puntaje / 5) * 100"></div>
+  </div>
+  -->
+
   <div class="imagen-container">
     <img [src]="personajeActual.imageUrl" alt="Personaje" />
   </div>
 
+  
   <div class="opciones">
-    <button *ngFor="let opcion of opciones" (click)="verificarRespuesta(opcion)">
+    <button *ngFor="let opcion of opciones" (click)="verificarRespuesta(opcion)" [disabled]="respuestaMostrada">
       {{ opcion }}
     </button>
   </div>
-
+  
+  <!--
+  <div class="opciones centradas">
+    <button *ngFor="let opcion of opciones" (click)="verificarRespuesta(opcion)" [disabled]="respuestaMostrada">
+      {{ opcion }}
+    </button>
+  </div>
+-->
   <div *ngIf="respuestaMostrada">
     <p [ngClass]="{ 'correcta': esCorrecta, 'incorrecta': !esCorrecta }">
       {{ esCorrecta ? '¡Correcto!' : 'Incorrecto. La casa correcta era: ' + personajeActual.family }}
@@ -19,11 +33,20 @@
   </div>
 </div>
 
-<div *ngIf="!personajeActual">
+<div *ngIf="juegoTerminado" class="resultado-final">
+  <p>
+    <span *ngIf="gano">🎉 ¡Felicidades! Ganaste el juego.</span>
+    <span *ngIf="!gano">❌ Lo siento, perdiste. ¡Inténtalo de nuevo!</span>
+  </p>
+  <button class="reiniciar" (click)="reiniciarJuego()">🔄 Reiniciar Juego</button>
+</div>
+
+<div *ngIf="!personajeActual && !juegoTerminado">
   <p>Cargando personaje...</p>
 </div>
 
-<div class="marcador">
-  <p>Puntaje: {{ puntaje }}</p>
-  <p>Preguntas respondidas: {{ totalPreguntas }}</p>
+<div class="marcador" *ngIf="!juegoTerminado">
+  <p><strong>Puntaje:</strong> {{ puntaje }} / 5</p>
+  <p><strong>Preguntas respondidas:</strong> {{ totalPreguntas }}</p>
+  <p><strong>Intentos restantes:</strong> {{ intentosRestantes }}</p>
 </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ResultadoService } from '../../../services/resultado.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -8,7 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AhorcadoComponent {
 
-  palabras: string[] = ['ANGULAR', 'COMPUTADORA', 'MONITOR' , 'TECLADO' , 'PROGRAMACION' , 'COMPONENTE', 'SERVICIO', 'RUTA'];
+  constructor(private resultadoService: ResultadoService) { }
+
+  palabras: string[] = ['ANGULAR', 'COMPUTADORA', 'MONITOR', 'TECLADO', 'PROGRAMACION', 'COMPONENTE', 'SERVICIO', 'RUTA'];
   palabra: string = this.elegirPalabra();
   letrasAdivinadas: string[] = [];
   intentos = 6;
@@ -17,8 +20,14 @@ export class AhorcadoComponent {
 
   seleccionarLetra(letra: string) {
     if (this.letrasAdivinadas.includes(letra) || this.juegoTerminado) return;
+
     this.letrasAdivinadas.push(letra);
     if (!this.palabra.includes(letra)) this.intentos--;
+
+    if (this.juegoTerminado) {
+      const puntos = this.gano ? this.intentos : 0;
+      this.resultadoService.guardarResultado('Ahorcado', puntos, this.palabra, this.gano);
+    }
   }
 
   mostrarLetra(letra: string): string {
@@ -28,11 +37,11 @@ export class AhorcadoComponent {
   get juegoTerminado(): boolean {
     return this.intentos === 0 || this.gano;
   }
-  
+
   get gano(): boolean {
     return this.palabra.split('').every(letra => this.letrasAdivinadas.includes(letra));
   }
-  
+
   get perdio(): boolean {
     return this.intentos === 0 && !this.gano;
   }
@@ -47,4 +56,10 @@ export class AhorcadoComponent {
     const index = Math.floor(Math.random() * this.palabras.length);
     return this.palabras[index];
   }
+
+  guardarResultadoFinal() {
+    const puntos = this.gano ? this.intentos : 0;
+    this.resultadoService.guardarResultado('Ahorcado', puntos, this.palabra, this.gano);
+  }
+
 }

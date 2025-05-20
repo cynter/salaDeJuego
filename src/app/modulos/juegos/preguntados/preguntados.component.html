@@ -1,11 +1,11 @@
 <div class="contenedor">
     <h2>¿A qué país pertenece esta bandera?</h2>
 
-    <div class="bandera-container">
-        <img [src]="banderaActual?.flag" alt="Bandera" />
+    <div class="bandera-container" *ngIf="banderaActual">
+        <img [src]="banderaActual.flag" alt="Bandera" />
     </div>
 
-    <div class="opciones">
+    <div class="opciones" *ngIf="banderaActual">
         <button *ngFor="let opcion of opciones" (click)="seleccionarOpcion(opcion)">
             {{ opcion }}
         </button>
@@ -16,5 +16,12 @@
             {{ esCorrecta ? '✅' : '❌' }} {{ mensaje }}
         </span>
     </p>
+
     <p class="puntuacion">Puntuación: {{ puntuacion }}</p>
+    <p class="intentos" *ngIf="banderaActual">Intentos restantes: {{ intentosRestantes }}</p>
+
+    <!-- Mostrar botón reiniciar si no hay bandera activa (juego terminado) -->
+    <button *ngIf="!banderaActual" (click)="reiniciarJuego()" class="btn-reiniciar">
+        Reiniciar Juego
+    </button>
 </div>

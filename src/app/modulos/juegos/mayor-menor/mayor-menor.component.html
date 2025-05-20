@@ -24,7 +24,12 @@
 </div>
 
 <p *ngIf="juegoTerminado" class="resultado">
+  <ng-container *ngIf="puntaje >= 5; else perdio">
+    ✅ ¡Ganaste! Puntaje final: <strong>{{ puntaje }}</strong>
+  </ng-container>
+  <ng-template #perdio>
     ❌ Perdiste. Tu puntaje: <strong>{{ puntaje }}</strong>
+  </ng-template>
 </p>
 
 <p *ngIf="!juegoTerminado" class="puntaje">
