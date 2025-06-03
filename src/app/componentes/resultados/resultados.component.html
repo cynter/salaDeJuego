@@ -1,5 +1,5 @@
 <div class="resultados-container">
-  <h2>Historial de Resultados</h2>
+  <h2>Lista de Resultados</h2>
 
   <div *ngIf="cargando">Cargando...</div>
 
@@ -21,7 +21,9 @@
           {{ r.gano ? 'Ganó' : 'Perdió' }}
         </td>
         <td>{{ r.puntos }}</td>
-        <td>{{ r.fecha | date: 'short' }}</td>
+        <!-- <td>{{ r.fecha | date: 'short' }}</td> -->
+         <td>{{ r.fecha | date:'dd/MM/yyyy HH:mm' }}</td>
+
       </tr>
     </tbody>
   </table>

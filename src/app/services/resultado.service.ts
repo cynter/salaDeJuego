@@ -31,7 +31,7 @@ export class ResultadoService {
         palabra,
         gano,
         user_id: user.id,
-        fecha: new Date().toISOString()
+        //fecha: new Date().toISOString()
       }
     ]);
 
