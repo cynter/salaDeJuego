@@ -24,7 +24,7 @@
 }
 
 .message-container {
-    background-color: #3d1279; // fondo común
+    //background-color: #3d1279; // fondo común
     border-radius: 10px;
     padding: 0.8em 1em;
     max-width: 80%;
@@ -49,6 +49,7 @@
     align-self: flex-end;
     margin-left: auto;
     color: #ffffff;
+    background-color: #fc49a7; // color propio para tus mensajes
 }
 
 .other-message {
@@ -56,6 +57,7 @@
     align-self: flex-start;
     margin-right: auto;
     color: #ffffff;
+    background-color: #3d1279; // color para otros
 }
 
 .message-header {
@@ -130,4 +132,34 @@
 
 .send-button:hover {
     background-color: #125ca1;
+}
+
+.date-header {
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+    margin: 1em 0 0.5em;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    padding: 0.4em;
+}
+
+.message-content-with-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95em;
+}
+
+.message-text {
+    white-space: pre-line;
+    flex: 1;
+}
+
+.message-time {
+    font-size: 0.75em;
+    color: gray;
+    margin-left: 0.5em;
+    white-space: nowrap;
 }
