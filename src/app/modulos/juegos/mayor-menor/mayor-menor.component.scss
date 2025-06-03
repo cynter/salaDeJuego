@@ -18,11 +18,7 @@ h2 {
 
 .carta {
   width: 120px;
-  height: auto;
-  margin: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s;
+  height: 180px;
 }
 
 .carta:hover {
@@ -65,15 +61,64 @@ button:disabled {
   font-weight: bold;
 }
 
+.zona-cartas {
+  display: flex;
+  justify-content: center;
+  gap: 3rem; // ajustado para que no estén tan separadas
+  align-items: flex-start;
+}
+
+/*
+.carta-contenedor {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+*/
+
+.carta-contenedor > img,
+.carta-contenedor > .flip-container {
+  margin-top: 0.75rem;
+}
+
+/* flip animation */
 .flip-container {
+  /*
+  display: flex;
+  justify-content: center;
+  align-items: center;
   perspective: 1000px;
+  */
+  height: 180px;
 }
 
 .flip-card {
+  position: relative;
+  width: 120px;
+  height: 180px;
   transition: transform 0.5s ease-in-out;
   transform-style: preserve-3d;
 }
 
+.flip-card img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  backface-visibility: hidden;
+}
+
+.flip-card .front {
+  transform: rotateY(180deg);
+}
+
 .flipping .flip-card {
   transform: rotateY(180deg);
+}
+
+.carta-contenedor p {
+  /* quitamos margen superior y dejamos
+     siempre el mismo margen inferior */
+  margin: 0 0 0.75rem 0;
 }

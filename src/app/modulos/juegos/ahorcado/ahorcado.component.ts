@@ -62,4 +62,8 @@ export class AhorcadoComponent {
     this.resultadoService.guardarResultado('Ahorcado', puntos, this.palabra, this.gano);
   }
 
+  esLetraCorrecta(letra: string): boolean {
+    return this.palabra.includes(letra);
+  }
+
 }

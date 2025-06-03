@@ -1,28 +1,42 @@
-<h2>Juego: Mayor o Menor o Igual</h2>
+<h2>Juego: Mayor o Menor</h2>
 
-<div *ngIf="!juegoTerminado" style="display: flex; justify-content: center; gap: 2rem;">
-    <div>
-        <p>Carta actual:</p>
-        <img [src]="'assets/cartas/' + cartaActual + '.png'" alt="Carta actual" class="carta" />
-    </div>
+<!-- Cartas -->
+<div *ngIf="!juegoTerminado" class="zona-cartas">
+  <!-- Carta actual -->
+  <div class="carta-contenedor">
+    <p>Carta actual:</p>
+    <img [src]="'assets/cartas/' + cartaActual + '.png'"
+         alt="Carta actual"
+         class="carta" />
+  </div>
 
-    <div>
-        <p>Carta siguiente:</p>
-        <div class="flip-container" [class.flipping]="flipping">
-            <div class="flip-card">
-                <img [src]="'assets/cartas/' + (siguienteCarta || cartaEnAnimacion) + '.png'" alt="Carta siguiente"
-                    class="carta" />
-            </div>
-        </div>
+  <!-- Carta siguiente (boca-abajo / con flip) -->
+  <div class="carta-contenedor">
+    <p>Carta siguiente:</p>
+    <div class="flip-container" [class.flipping]="flipping">
+      <div class="flip-card">
+        <!-- Cara frontal (valor real) -->
+        <img class="front"
+             [src]="'assets/cartas/' + siguienteCarta + '.png'"
+             alt="Carta revelada" />
+
+        <!-- Cara trasera (reverso) -->
+        <img class="back"
+             src="assets/cartas/reverso.png"
+             alt="Carta boca-abajo" />
+      </div>
     </div>
+  </div>
 </div>
 
+<!-- Botones de elección -->
 <div *ngIf="!juegoTerminado">
-    <button (click)="jugar('mayor')">Mayor</button>
-    <button (click)="jugar('menor')">Menor</button>
-    <button (click)="jugar('igual')">Igual</button>
+  <button (click)="jugar('mayor')">Mayor</button>
+  <button (click)="jugar('menor')">Menor</button>
+  <button (click)="jugar('igual')">Igual</button>
 </div>
 
+<!-- Resultado -->
 <p *ngIf="juegoTerminado" class="resultado">
   <ng-container *ngIf="puntaje >= 5; else perdio">
     ✅ ¡Ganaste! Puntaje final: <strong>{{ puntaje }}</strong>
@@ -33,9 +47,9 @@
 </p>
 
 <p *ngIf="!juegoTerminado" class="puntaje">
-    Puntaje actual: {{ puntaje }}
+  Puntaje actual: {{ puntaje }}
 </p>
 
 <div *ngIf="juegoTerminado">
-    <button (click)="reiniciarJuego()">🔁 Reiniciar</button>
+  <button (click)="reiniciarJuego()">🔁 Reiniciar</button>
 </div>

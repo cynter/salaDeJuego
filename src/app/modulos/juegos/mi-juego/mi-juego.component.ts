@@ -57,7 +57,7 @@ export class MiJuegoComponent implements OnInit, OnDestroy {
     const opcionesSet = new Set<string>();
     opcionesSet.add(this.personajeActual.family);
 
-    while (opcionesSet.size < 4) {
+    while (opcionesSet.size < 3) {
       const randomFam = this.personajes[Math.floor(Math.random() * this.personajes.length)].family;
       opcionesSet.add(randomFam);
     }

@@ -9,8 +9,10 @@
   </p>
 
   <div class="letras" *ngIf="!juegoTerminado">
-    <button *ngFor="let letra of letras" [disabled]="letrasAdivinadas.includes(letra)"
-      [ngClass]="{ 'usada': letrasAdivinadas.includes(letra) }" (click)="seleccionarLetra(letra)">
+    <button *ngFor="let letra of letras" [disabled]="letrasAdivinadas.includes(letra)" [ngClass]="{
+    'correcta': letrasAdivinadas.includes(letra) && esLetraCorrecta(letra),
+    'incorrecta': letrasAdivinadas.includes(letra) && !esLetraCorrecta(letra)
+  }" (click)="seleccionarLetra(letra)">
       {{ letra }}
     </button>
   </div>

@@ -1,31 +1,17 @@
 <div *ngIf="personajeActual && !juegoTerminado">
   <h2>¿A qué casa pertenece este personaje?</h2>
-  <!-- Barra de progreso -->
-  <!-- 
-  <div class="barra-contenedor">
-    <div class="barra" [style.width.%]="(puntaje / 5) * 100"></div>
-  </div>
-  -->
 
   <div class="imagen-container">
     <img [src]="personajeActual.imageUrl" alt="Personaje" />
   </div>
 
-  
   <div class="opciones">
     <button *ngFor="let opcion of opciones" (click)="verificarRespuesta(opcion)" [disabled]="respuestaMostrada">
       {{ opcion }}
     </button>
   </div>
   
-  <!--
-  <div class="opciones centradas">
-    <button *ngFor="let opcion of opciones" (click)="verificarRespuesta(opcion)" [disabled]="respuestaMostrada">
-      {{ opcion }}
-    </button>
-  </div>
--->
-  <div *ngIf="respuestaMostrada">
+  <div *ngIf="respuestaMostrada" class="respuesta-container">
     <p [ngClass]="{ 'correcta': esCorrecta, 'incorrecta': !esCorrecta }">
       {{ esCorrecta ? '¡Correcto!' : 'Incorrecto. La casa correcta era: ' + personajeActual.family }}
     </p>

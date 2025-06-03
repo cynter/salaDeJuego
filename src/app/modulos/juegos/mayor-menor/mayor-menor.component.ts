@@ -9,90 +9,76 @@ import { ResultadoService } from '../../../services/resultado.service';
 })
 export class MayorMenorComponent implements OnDestroy {
 
-  constructor(private resultadoService: ResultadoService) { }
+  constructor(private resultadoService: ResultadoService) {}
 
-  cartaActual: number = this.obtenerCarta();
-  siguienteCarta: number = 0;
-  cartaEnAnimacion: number = 1;
+  cartaActual = this.obtenerCarta();
+  siguienteCarta = 0;            // valor oculto hasta el giro
+  puntaje     = 0;
+  juegoTerminado = false;
+  flipping = false;              // controla la animación
 
-  puntaje: number = 0;
-  juegoTerminado: boolean = false;
-
-  intervaloAnimacion: any;
-
-  flipping: boolean = false;
-
+  /** Devuelve un número de 1 a 13 */
   obtenerCarta(): number {
-    return Math.floor(Math.random() * 13) + 1; // 1 a 13
+    return Math.floor(Math.random() * 13) + 1;
   }
 
-  iniciarAnimacion() {
-    this.intervaloAnimacion = setInterval(() => {
-      this.cartaEnAnimacion = this.obtenerCarta();
-    }, 100); // cambia cada 100ms
+  /** Prepara la ronda: genera la nueva carta oculta */
+  prepararNuevaRonda() {
+    this.siguienteCarta = this.obtenerCarta();
+    this.flipping = false;       // deja la carta boca-abajo
   }
 
-  detenerAnimacion() {
-    clearInterval(this.intervaloAnimacion);
+  ngOnInit(): void {
+    this.prepararNuevaRonda();
   }
+
+  ngOnDestroy(): void { /* sin temporizadores ahora */ }
 
   jugar(eleccion: 'mayor' | 'menor' | 'igual') {
-    this.detenerAnimacion();
-    this.flipping = true; // activa animación
+    // impide clics repetidos
+    if (this.flipping || this.juegoTerminado) return;
 
-    // Esperamos la duración de la animación antes de mostrar el resultado
+    this.flipping = true;        // activa el giro
+
+    // espera al final de la animación (coincidir con el CSS → 500 ms)
     setTimeout(() => {
-      this.siguienteCarta = this.cartaEnAnimacion;
 
+      // ya se ve la carta frontal, podemos evaluar
       const gano =
-        (eleccion === 'mayor' && this.siguienteCarta > this.cartaActual) ||
-        (eleccion === 'menor' && this.siguienteCarta < this.cartaActual) ||
-        (eleccion === 'igual' && this.siguienteCarta == this.cartaActual);
-
-      this.flipping = false; // termina animación
+        (eleccion === 'mayor' && this.siguienteCarta >  this.cartaActual) ||
+        (eleccion === 'menor' && this.siguienteCarta <  this.cartaActual) ||
+        (eleccion === 'igual' && this.siguienteCarta === this.cartaActual);
 
       if (gano) {
         this.puntaje++;
 
-        // Si llegó a 5 puntos, ganó
         if (this.puntaje >= 5) {
-          this.finalizarJuego(true); // Ganó
+          this.finalizarJuego(true);           // llegó a 5 ⇒ gana
         } else {
-          this.cartaActual = this.siguienteCarta;
-          this.siguienteCarta = 0;
-          this.iniciarAnimacion(); // continuar
+          this.cartaActual = this.siguienteCarta;  // la carta revelada pasa a ser la actual
+          this.prepararNuevaRonda();               // nueva ronda
         }
       } else {
-        this.finalizarJuego(false); // Perdió
+        this.finalizarJuego(false);            // pierde
       }
-    }, 500); // duración del giro (debe coincidir con el CSS)
+
+    }, 500);                                   // duración del flip
   }
 
   reiniciarJuego() {
     this.puntaje = 0;
     this.juegoTerminado = false;
     this.cartaActual = this.obtenerCarta();
-    this.siguienteCarta = 0;
-    this.iniciarAnimacion();
-  }
-
-  ngOnDestroy(): void {
-    this.detenerAnimacion();
-  }
-
-  ngOnInit(): void {
-    this.iniciarAnimacion();
+    this.prepararNuevaRonda();
   }
 
   finalizarJuego(gano: boolean) {
     this.juegoTerminado = true;
-
     this.resultadoService.guardarResultado(
       'Mayor o Menor',
       this.puntaje,
-      '',       // no hay palabra en este juego
+      '',        // sin palabra
       gano
     );
   }
-
 }

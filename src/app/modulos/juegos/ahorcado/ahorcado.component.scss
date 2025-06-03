@@ -48,7 +48,8 @@
 }
 
 .btn-reiniciar {
-  background-color: #4CAF50; /* Verde */
+  background-color: #4CAF50;
+  /* Verde */
   border: none;
   color: white;
   padding: 12px 20px;
@@ -103,6 +104,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -132,4 +134,16 @@
 
 .resultado.perdido {
   color: red;
+}
+
+.letras button.correcta {
+  background-color: #4caf50 !important; // verde
+  color: white;
+  cursor: not-allowed;
+}
+
+.letras button.incorrecta {
+  background-color: #e53935 !important; // rojo
+  color: white;
+  cursor: not-allowed;
 }

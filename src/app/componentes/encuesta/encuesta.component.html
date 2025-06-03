@@ -1,3 +1,12 @@
+<div *ngIf="mensaje"
+     [@fadeInOut]
+     [ngClass]="{ 'mensaje-exito': tipoMensaje==='exito',
+                  'mensaje-error': tipoMensaje==='error' }"
+     class="mensaje">
+  {{ mensaje }}
+  <button class="cerrar-mensaje" (click)="mensaje = null">×</button>
+</div>
+
 <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()" class="encuesta-form">
   <h2>Encuesta</h2>
 
