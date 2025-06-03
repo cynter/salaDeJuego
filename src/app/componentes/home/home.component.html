@@ -1,8 +1,8 @@
 <div class="container text-center mt-5">
   <div *ngIf="supabase.user; else notLogged" class="card p-4 shadow-sm">
     <h2 class="mb-3">Bienvenido</h2>
-    <p class="mb-4">Hola, <strong>{{ supabase.user.email }}</strong></p>
-    <button class="btn btn-danger mb-4" (click)="logout()">Cerrar sesión</button>
+    <p class="mb-4"><strong>{{ supabase.user.email }}</strong></p>
+    <!--<button class="btn btn-danger mb-4" (click)="logout()">Cerrar sesión</button>-->
 
     <!-- Tarjetas de juegos -->
     <div class="row row-cols-1 row-cols-md-2 g-4 mt-2">

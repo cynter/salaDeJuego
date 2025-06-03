@@ -1,7 +1,9 @@
 .btn-group {
   display: flex;
+  flex-wrap: wrap; // Permite que los botones se acomoden en varias líneas
   justify-content: center;
   gap: 10px;
+  margin-bottom: 1rem;
 
   button {
     padding: 8px 20px;
@@ -13,6 +15,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
   }
 
   button:hover {
@@ -26,7 +29,30 @@
   }
 }
 
+// Estilos específicos para pantallas pequeñas (celulares)
+@media (max-width: 768px) {
+  .btn-group {
+    flex-direction: column;
+    align-items: stretch; // que los botones ocupen todo el ancho
+
+    button {
+      width: 100%; // que cada botón use todo el ancho disponible
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
 .fondo {
   background-color: transparent;
   border: none;
+}
+
+.logout-button {
+  background-color: red;
+  color: white;
+
+  &:hover {
+    background-color: darkred;
+  }
 }
